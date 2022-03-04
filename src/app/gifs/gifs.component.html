@@ -1,0 +1,21 @@
+<!-- Lista de Gifs -->
+<div class="grid-container">
+    <a target="_blank" href="{{ gifs.images.downsized_medium.url }}" *ngFor="let gifs of busquedas">
+        <img 
+            class="grid-item" 
+            [src]="gifs.images.downsized_medium.url"
+            pTooltip="{{ gifs.title }}" 
+            tooltipPosition="top"
+        >   
+    </a>
+
+    <span style="margin-bottom: 2px; width: 100%"></span> <!-- Espacio en blanco -->
+
+</div>
+
+<!-- Error en caso de que no se encuentre el termino introducido -->
+<div *ngIf="!noSeEncontro">
+    <div class="animate__animated animate__backInUp alert alert-danger text-center" role="alert" style="margin: 10px;">
+        No se encontro nada con el termino introducido, por favor introduzca otro termino.
+    </div>
+</div>

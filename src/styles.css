@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales de CSS */
+html, body 
+{ 
+    height: 100%; 
+}
+
+body 
+{
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: rgb(255, 255, 255);
+}
+
+.menubar
+{
+    background-color: rgb(33, 33, 33);
+    color: white;
+    padding: 10px;
+}
+
+@media(max-width: 800px)
+{
+    .dark-sidebar.p-sidebar 
+    {
+        background-color: rgb(26, 25, 25);
+        color: white;
+        width: 100%;   
+    }
+}
+
+@media(min-width: 801px)
+{
+    .dark-sidebar.p-sidebar 
+    {
+        background-color: rgb(26, 25, 25);
+        color: white;
+        width: 25%;   
+    }
+}
+
+@media(min-width: 801px)
+{
+    .dialog.p-dialog
+    {
+        width: 90%;
+        height: 1000px;
+    }
+}
+@media(min-width: 801px)
+{
+    .dialog.p-dialog
+    {
+        width: 40%;
+        height: 460px;
+    }
+}
+
+
+.grid-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 230px);
+    gap: 20px;
+    justify-content: center;
+}
+
+.grid-item
+{
+    width: 230px;
+    height: 200px;
+    object-fit: cover;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.grid-item:hover
+{
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.9);
+}

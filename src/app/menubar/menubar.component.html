@@ -1,0 +1,133 @@
+<!-- Menubar -->
+<div class="menubar">
+    
+    <!-- Boton de menu -->
+    <button 
+      pButton 
+      pRipple 
+      type="button" 
+      icon="pi pi-bars" 
+      class="p-button-rounded p-button-secondary p-button-text" 
+      style="margin-left: 15px; margin: 5px; color: white"
+      (click)="visibleSidebar = true"
+    ></button>
+
+    <!-- Boton de Configuracion -->
+    <button 
+      pButton 
+      pRipple 
+      type="button" 
+      icon="pi pi-cog" 
+      class="p-button-rounded p-button-secondary p-button-text" 
+      style="color: white; margin: 5px; position: absolute; right: 0; margin-right: 15px;"
+      (click)="showDialog()"
+    ></button>
+  
+    <!-- Titulo -->
+    <h5 class="animate__animated animate__backInRight" style="margin: 12px; margin-left: 5px; display: inline-block;">BuscadorGIFs</h5>
+  
+</div>
+  
+<!-- Sidebar -->
+
+<p-sidebar styleClass="dark-sidebar" [(visible)]="visibleSidebar">
+
+  <!-- Titulo -->
+  <h5 class="text-center"> Historial </h5>
+  <hr>
+  
+  <!-- Historial -->
+  <div *ngIf="verHistorial; else noVer">
+    <div *ngFor="let historials of historial">
+
+      <button 
+        style="width: 100%; color: white" 
+        class="button" 
+        pButton pRipple 
+        type="button" 
+        label="{{ historials | titlecase }}" 
+        class="p-button-secondary p-button-text"
+        (click)="buscarGifs(historials)"
+        (click)="visibleSidebar = false">
+      </button>
+
+    </div>
+  </div>
+
+  <ng-template #noVer>
+    <p style="text-align: center">El historial se encuentra desactivado, para activarlo debes ir a configuraciones.</p>
+  </ng-template>
+  
+</p-sidebar>
+
+
+<!-- Ventana de configuración -->
+<div>
+  <p-dialog [(visible)]="visibleVentana" styleClass="dialog">
+ 
+    <!-- Titulo -->
+    <ng-template pTemplate="header">
+      <h5> Configuraciones </h5>
+    </ng-template>
+  
+    <!-- Contenido -->
+    <p> Aquí podras configurar algunos apartados del BuscadorGIFs.</p>
+    <hr>
+    <p>¿Cuantos gifs desea mostrar en cada busqueda?</p>
+  
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" (click)="btnRadio()">
+  
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" (click)="btnRadioUno()">
+      <label class="btn btn-outline-primary" for="btnradio1">5</label>
+    
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="btnRadioDos()">
+      <label class="btn btn-outline-primary" for="btnradio2">10</label>
+    
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked (click)="btnRadioTres()">
+      <label class="btn btn-outline-primary" for="btnradio3">20</label>
+  
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" (click)="btnRadioCuatro()">
+      <label class="btn btn-outline-primary" for="btnradio4">30</label>
+  
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" (click)="btnRadioCinco()">
+      <label class="btn btn-outline-primary" for="btnradio5">50</label>
+  
+    </div>
+  
+    <br>
+    <br>
+  
+    <p>¿Desea que el historial este activo?</p>
+  
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" #checkHistorial (click)="btnCheck()" [checked]="true">
+      <label class="form-check-label" for="flexCheckDefault" >
+        Historial
+      </label>
+    </div>
+  
+    <br>
+  
+    <button 
+      pButton 
+      type="button" 
+      label="Borrar historial" 
+      class="p-button-danger" 
+      style="width: 100%;" 
+      (click)="borrarHistorial()" 
+      (click)="closeDialog()">
+    </button>
+
+    <button 
+      pButton 
+      type="button" 
+      label="Cerrar" 
+      style="width: 100%; 
+      margin-top: 10px;" 
+      (click)="closeDialog()">
+    </button>
+  
+  </p-dialog>
+</div>
+
+
